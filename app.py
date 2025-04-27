@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify
 import asyncio
 from Crypto.Cipher import AES
@@ -18,6 +19,8 @@ app = Flask(__name__)
 
 def encrypt_message(plaintext):
     try:
+        if isinstance(plaintext, str):
+            plaintext = plaintext.encode('utf-8')
         key = b'Yg&tc%DEuh6%Zc^8'
         iv = b'6oyZDr22E3ychjM%'
         cipher = AES.new(key, AES.MODE_CBC, iv)
