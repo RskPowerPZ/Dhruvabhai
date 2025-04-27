@@ -12,8 +12,21 @@ import like_count_pb2
 import uid_generator_pb2
 from google.protobuf.message import DecodeError
 import os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
+
+def encrypt_message(plaintext):
+    try:
+        key = b'Yg&tc%DEuh6%Zc^8'
+        iv = b'6oyZDr22E3ychjM%'
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        padded_message = pad(plaintext, AES.block_size)
+        encrypted_message = cipher.encrypt(padded_message)
+        return binascii.hexlify(encrypted_message).decode('utf-8')
+    except Exception as e:
+        app.logger.error(f"Error encrypting message: {e}")
+        return None
 
 def load_tokens(server_name):
     try:
@@ -170,7 +183,7 @@ def handle_requests():
             if encrypted_uid is None:
                 raise Exception("Encryption of UID failed.")
 
-            # الحصول على بيانات اللاعب قبل تنفيذ عملية الإعجاب
+            # Get player info before sending likes
             before = make_request(encrypted_uid, server_name, token)
             if before is None:
                 raise Exception("Failed to retrieve initial player info.")
@@ -186,7 +199,7 @@ def handle_requests():
                 before_like = 0
             app.logger.info(f"Likes before command: {before_like}")
 
-            # تحديد رابط الإعجاب حسب اسم السيرفر
+            # Choose like URL
             if server_name == "IND":
                 url = "https://client.ind.freefiremobile.com/LikeProfile"
             elif server_name in {"BR", "US", "SAC", "NA"}:
@@ -194,10 +207,10 @@ def handle_requests():
             else:
                 url = "https://clientbp.ggblueshark.com/LikeProfile"
 
-            # إرسال الطلبات بشكل غير متزامن
+            # Send likes
             asyncio.run(send_multiple_requests(uid, server_name, url))
 
-            # الحصول على بيانات اللاعب بعد تنفيذ عملية الإعجاب
+            # Get player info after sending likes
             after = make_request(encrypted_uid, server_name, token)
             if after is None:
                 raise Exception("Failed to retrieve player info after like requests.")
