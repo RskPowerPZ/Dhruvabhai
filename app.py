@@ -18,7 +18,7 @@ app = Flask(__name__)
 def load_tokens(server_name):
     try:
         if server_name == "IND":
-            file_path = os.path.join(BASE_DIR, "token_ind.json")
+            file_path = os.path.join(BASE_DIR, "jwt_tokens.json")
             with open(file_path, "r") as f:
                 tokens = json.load(f)
         elif server_name in {"BR", "US", "SAC", "NA"}:
