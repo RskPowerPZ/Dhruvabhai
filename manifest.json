@@ -1,0 +1,34 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "This Is Colourful And Vibrant Shaders Isko Laga Dala To Game Me Colour Var Dala
+Support Render Dragon
+YT : SD TIME",
+        "name": "Colorful Shaders BY SD",
+        "uuid": "17e78b99-7580-4b0a-90b7-84dc177ab610",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            16,
+            2
+        ]
+    },
+    "modules": [
+        {
+            "description": "Colorful Shaders For PE
+Support Render Dragon
+YT : SD TIME",
+            "type": "resources",
+            "uuid": "43a9be89-d6a5-41e0-bb61-464d3c44743f",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}
