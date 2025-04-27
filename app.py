@@ -11,35 +11,27 @@ import like_pb2
 import like_count_pb2
 import uid_generator_pb2
 from google.protobuf.message import DecodeError
-
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
 
 def load_tokens(server_name):
     try:
         if server_name == "IND":
-            with open("token_ind.json", "r") as f:
+            file_path = os.path.join(BASE_DIR, "token_ind.json")
+            with open(file_path, "r") as f:
                 tokens = json.load(f)
         elif server_name in {"BR", "US", "SAC", "NA"}:
-            with open("token_br.json", "r") as f:
+            file_path = os.path.join(BASE_DIR, "token_br.json")
+            with open(file_path, "r") as f:
                 tokens = json.load(f)
         else:
-            with open("token_bd.json", "r") as f:
+            file_path = os.path.join(BASE_DIR, "token_bd.json")
+            with open(file_path, "r") as f:
                 tokens = json.load(f)
         return tokens
     except Exception as e:
         app.logger.error(f"Error loading tokens for server {server_name}: {e}")
-        return None
-
-def encrypt_message(plaintext):
-    try:
-        key = b'Yg&tc%DEuh6%Zc^8'
-        iv = b'6oyZDr22E3ychjM%'
-        cipher = AES.new(key, AES.MODE_CBC, iv)
-        padded_message = pad(plaintext, AES.block_size)
-        encrypted_message = cipher.encrypt(padded_message)
-        return binascii.hexlify(encrypted_message).decode('utf-8')
-    except Exception as e:
-        app.logger.error(f"Error encrypting message: {e}")
         return None
 
 def create_protobuf_message(user_id, region):
