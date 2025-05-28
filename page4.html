@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page4 - For Jyoti 💖</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+<style>
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: .15em solid #ff007f;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .1em;
+  animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ff007f }
+}
+
+.heart-falling {
+  position: fixed;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: fall 6s linear infinite;
+  z-index: 0;
+}
+
+.heart-falling::before,
+.heart-falling::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart-falling::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart-falling::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    opacity: 1;
+    transform: translateY(0) rotate(45deg);
+  }
+  100% {
+    top: 110%;
+    opacity: 0;
+    transform: translateY(100vh) rotate(45deg);
+  }
+}
+</style>
+
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="{{ url_for('static', filename='audio/romantic_background_music.mp3') }}" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <div class="heart"></div>
+        <h1 class="typewriter">Rahul ❤️ Jyoti</h1>
+        <p>Main har janam mein tumhe hi chahunga 💫</p>
+        <a href="/page5" class="next-btn">Next →</a>
+    </div>
+    
+<script>
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart-falling");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
