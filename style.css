@@ -1,0 +1,61 @@
+
+body {
+    background: linear-gradient(to bottom right, #ffc0cb, #ffe4e1);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: #d63384;
+    margin: 0;
+    overflow-x: hidden;
+}
+.container {
+    padding: 50px 20px;
+}
+.love-img {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+.typewriter h2 {
+    overflow: hidden;
+    border-right: .15em solid pink;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .1em;
+    animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: pink }
+}
+.heart-fall {
+    position: fixed;
+    top: -10px;
+    font-size: 1.5rem;
+    animation: fall 4s linear infinite;
+    color: #ff69b4;
+}
+@keyframes fall {
+    0% { top: -10px; opacity: 0; }
+    100% { top: 100%; opacity: 1; }
+}
+.shayari {
+    margin-top: 30px;
+    font-style: italic;
+    font-size: 1.1em;
+}
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    color: #ff69b4;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}

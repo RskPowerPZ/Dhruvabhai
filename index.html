@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 1 - For Jyoti 💖</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="{{ url_for('static', filename='audio/romantic.mp3') }}" type="audio/mpeg">
+</audio>
+
+<!-- Falling Hearts -->
+{% for i in range(20) %}
+    <div class="heart-fall" style="left: {{ i * 5 }}%; animation-delay: {{ i * 0.3 }}s;">💖</div>
+{% endfor %}
+
+<div class="container">
+    <img src="{{ url_for('static', filename='img/love_couple.png') }}" alt="Love Image" class="love-img">
+    <h1>DarkBhaiFan ❤️ Jyoti</h1>
+    <div class="typewriter">
+        <h2>Hey Jyoti 💖 ye website sirf tumhare liye hai...</h2>
+    </div>
+    <p class="shayari">"Tum aaye zindagi mein, lagta hai jaise saari khushbu mil gayi ho 💐"</p>
+    <div class="scroll-down">👇 Scroll down for more love</div>
+</div>
+
+</body>
+</html>
